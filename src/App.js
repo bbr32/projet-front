@@ -1,26 +1,39 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Row, Container, Col } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
+import Routes from './routes';
+
+const navlink = {
+  textDecoration: 'none',
+  color: 'white',
+  display: 'inline-block',
+  width: '100%',
+  padding: '0.8em 1em'
+};
 
 class App extends Component {
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Container fluid={true} className="App">
+        <Row>
+          <Col md={2} sm={3} className="bg-dark sidebar text-light px-0 py-2">
+            <div className="sidebar-sticky">
+              <h3 className="text-center py-2">Dashboard</h3>
+              <br className="py-4" />
+              <ul>
+                <li><NavLink exact to="/" style={navlink} activeClassName="side-menu-active">Data</NavLink></li>
+                <li><NavLink exact to="/weather" style={navlink} activeClassName="side-menu-active">Weather</NavLink></li>
+                <li><NavLink exact to="/calendar" style={navlink} activeClassName="side-menu-active">Calendar</NavLink></li>
+              </ul>
+            </div>
+          </Col>
+          <Col md={10} sm={9}>
+            <Routes />
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
