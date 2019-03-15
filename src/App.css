@@ -1,7 +1,18 @@
-.sidebar-sticky {
+.sidebar {
   height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
+  position: fixed;
+}
+
+.nav-small{
+  display: none;
+  position: fixed;
+}
+
+.menu{
+  color: white;
+  margin: 4% 0 4% 88%;
 }
 
 ul{
@@ -34,4 +45,13 @@ li:hover{
 .side-menu-active:hover{
   transition: none !important;
   border: none;
+}
+
+@media (max-width: 576px){
+  .sidebar{
+    display: none;
+  }
+  .nav-small{
+    display: inline;
+  }
 }

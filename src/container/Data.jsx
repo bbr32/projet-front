@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { Row, Col } from 'reactstrap';
 import {
-    AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, PieChart, Pie, Sector, Cell,
+    AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, PieChart, Pie, ResponsiveContainer
 } from 'recharts';
 
 
@@ -37,27 +38,38 @@ class Data extends Component {
         return (
             <div>
                 <h3 className="py-2">Data</h3>
-                <AreaChart
-                    width={500}
-                    height={400}
-                    data={data}
-                    margin={{
-                        top: 10, right: 30, left: 0, bottom: 0,
-                    }}
-                >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Area type="monotone" dataKey="uv" stackId="1" stroke="#8884d8" fill="#8884d8" />
-                    <Area type="monotone" dataKey="pv" stackId="1" stroke="#82ca9d" fill="#82ca9d" />
-                    <Area type="monotone" dataKey="amt" stackId="1" stroke="#ffc658" fill="#ffc658" />
-                </AreaChart>
+                <Row>
+                    <Col lg={8} md={12}>
+                        <ResponsiveContainer aspect={2}>
+                            <AreaChart
+                                data={data}
+                                margin={{
+                                    top: 10, right: 30, left: 0, bottom: 0,
+                                }}
+                            >
+                                <CartesianGrid strokeDasharray="3 3" />
+                                <XAxis dataKey="name" />
+                                <YAxis />
+                                <Tooltip />
+                                <Area type="monotone" dataKey="uv" stackId="1" stroke="#8884d8" fill="#8884d8" />
+                                <Area type="monotone" dataKey="pv" stackId="1" stroke="#82ca9d" fill="#82ca9d" />
+                                <Area type="monotone" dataKey="amt" stackId="1" stroke="#ffc658" fill="#ffc658" />
+                            </AreaChart>
 
-                <PieChart width={400} height={400}>
-                    <Pie data={data01} dataKey="value" cx={200} cy={200} outerRadius={60} fill="#8884d8" />
-                    <Pie data={data02} dataKey="value" cx={200} cy={200} innerRadius={70} outerRadius={90} fill="#82ca9d" label />
-                </PieChart>
+                        </ResponsiveContainer>
+
+                    </Col>
+                    <Col md={6} lg={4}>
+                        <ResponsiveContainer aspect={1}>
+                            <PieChart width={400} height={400}>
+                                <Pie data={data01} dataKey="value" cx={200} cy={200} outerRadius={60} fill="#8884d8" />
+                                <Pie data={data02} dataKey="value" cx={200} cy={200} innerRadius={70} outerRadius={90} fill="#82ca9d" label />
+                            </PieChart>
+                        </ResponsiveContainer>
+                    </Col>
+
+                </Row>
+
             </div>
         );
     }
