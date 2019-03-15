@@ -19,22 +19,23 @@ class Weather extends Component {
         const api_call = await fetch('http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=' + API +'&units=metric');
         const data = await api_call.json();
         console.log(data);
-        // this.setState({
-        //     temperature: data.main.temp,
-        //     city: data.main.name,
-        //     country: data.sys.country,
-        //     humidity: data.main.humidity,
-        //     description: data.weather[0].description
-        // });
+        this.setState({
+            temperature: data.main.temp,
+            city: data.name,
+            country: data.sys.country,
+            humidity: data.main.humidity,
+            description: data.weather[0].description
+        });
     }
+
     render() {
         return (
             <div>
                 <h2 className="py-2">Weather</h2>
-                <p>Temperature: {this.state.temperature}</p>
+                <p>Temperature: {this.state.temperature}°C</p>
                 <p>City: {this.state.city}</p>
                 <p>Country: {this.state.country}</p>
-                <p>Humidity: {this.state.humidity}</p>
+                <p>Humidity: {this.state.humidity}%</p>
                 <p>Description: {this.state.description}</p>
             </div>
         );

@@ -3,11 +3,15 @@ import { Route, Switch } from 'react-router-dom';
 import Weather from './container/Weather';
 import Calendarr from './container/Calendar';
 import Data from './container/Data';
+import Charts from './container/Charts';
+import Forms from './container/Forms';
 
 export default () => (
     <Switch>
         <Route path="/" exact component={Data} />
+        <Route path="/charts" exact component={Charts} />
         <Route path="/calendar" exact component={Calendarr} />
         <Route path="/weather" exact component={Weather} />
+        <Route path="/form" exact component={Forms} />
     </Switch>
 );
