@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, Card } from 'reactstrap';
 import {
     AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, PieChart, Pie, ResponsiveContainer
 } from 'recharts';
@@ -37,34 +37,38 @@ class Charts extends Component {
     render() {
         return (
             <div>
-                <h3 className="py-2">Charts</h3>
+                <h3 className="py-3">Charts</h3>
                 <Row>
                     <Col lg={7} md={12}>
-                        <ResponsiveContainer aspect={2}>
-                            <AreaChart
-                                data={data}
-                            >
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
-                                <YAxis />
-                                <Tooltip />
-                                <Area type="monotone" dataKey="uv" stackId="1" stroke="#8884d8" fill="#8884d8" />
-                                <Area type="monotone" dataKey="pv" stackId="1" stroke="#82ca9d" fill="#82ca9d" />
-                                <Area type="monotone" dataKey="amt" stackId="1" stroke="#ffc658" fill="#ffc658" />
-                            </AreaChart>
+                        <Card>
+                            <ResponsiveContainer aspect={1}>
+                                <AreaChart
+                                    data={data}
+                                >
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis dataKey="name" />
+                                    <YAxis />
+                                    <Tooltip />
+                                    <Area type="monotone" dataKey="uv" stackId="1" stroke="#8884d8" fill="#8884d8" />
+                                    <Area type="monotone" dataKey="pv" stackId="1" stroke="#82ca9d" fill="#82ca9d" />
+                                    <Area type="monotone" dataKey="amt" stackId="1" stroke="#ffc658" fill="#ffc658" />
+                                </AreaChart>
 
-                        </ResponsiveContainer>
+                            </ResponsiveContainer>
+
+                        </Card>
 
                     </Col>
                     <Col md={6} lg={5}>
-                        <ResponsiveContainer aspect={1}>
-                            <PieChart>
-                                <Pie data={data01} dataKey="value" cx={200} cy={200} outerRadius={60} fill="#8884d8" />
-                                <Pie data={data02} dataKey="value" cx={200} cy={200} innerRadius={70} outerRadius={90} fill="#82ca9d" label />
-                            </PieChart>
-                        </ResponsiveContainer>
+                        <Card>
+                            <ResponsiveContainer aspect={1}>
+                                <PieChart>
+                                    <Pie data={data01} dataKey="value" cx={200} cy={200} outerRadius={60} fill="#8884d8" />
+                                    <Pie data={data02} dataKey="value" cx={200} cy={200} innerRadius={70} outerRadius={90} fill="#82ca9d" label />
+                                </PieChart>
+                            </ResponsiveContainer>
+                        </Card>
                     </Col>
-
                 </Row>
             </div>
         );

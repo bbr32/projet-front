@@ -28,7 +28,7 @@ class Forms extends Component {
     render() {
         return (
             <div>
-                <h3 className="py-2">Form</h3>
+                <h3 className="py-3">Form</h3>
                 <Form>
                     <FormGroup>
                         <Label for="formArtist">Artiste</Label>

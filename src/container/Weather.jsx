@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Row, Col } from 'reactstrap';
 
 const API = "ac156d7e0497ba1cd37142f49280cc88"
 
@@ -31,12 +32,30 @@ class Weather extends Component {
     render() {
         return (
             <div>
-                <h2 className="py-2">Weather</h2>
-                <p>Temperature: {this.state.temperature}°C</p>
-                <p>City: {this.state.city}</p>
-                <p>Country: {this.state.country}</p>
-                <p>Humidity: {this.state.humidity}%</p>
-                <p>Description: {this.state.description}</p>
+                <h2 className="py-3">Weather</h2>
+                
+                <Row className="weather-container text-center">
+                    <Col lg={{size: 2, offset:1}} md={4} xs={12}>
+                        <h5 className="text-light font-weight-bold">TEMPERATURE</h5>
+                        <h3 className="text-light font-weight-bold">{this.state.temperature}°C</h3>
+                    </Col>
+                    <Col lg={2} md={4} xs={12}>
+                        <h5 className="text-light font-weight-bold">CITY</h5>
+                        <h3 className="text-light font-weight-bold">{this.state.city}</h3>
+                    </Col>
+                    <Col lg={2} md={4} xs={12}>
+                        <h5 className="text-light font-weight-bold">COUNTRY</h5>
+                        <h3 className="text-light font-weight-bold">{this.state.country}</h3>
+                    </Col>
+                    <Col lg={{size: 2, offset: 0}} md={{size: 4, offset:2}} xs={12}>
+                        <h5 className="text-light font-weight-bold">HUMIDITY</h5>
+                        <h3 className="text-light font-weight-bold">{this.state.humidity}%</h3>
+                    </Col>
+                    <Col lg={2} md={4} xs={12}>
+                        <h5 className="text-light font-weight-bold">DESCRIPTION</h5>
+                        <h4 className="text-light font-weight-bold">{this.state.description}</h4>
+                    </Col>
+                </Row>
             </div>
         );
     }

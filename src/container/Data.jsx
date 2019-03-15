@@ -16,7 +16,7 @@ class Data extends Component {
     render() {
         return (
             <div>
-                <h3 className="py-2">Data</h3>
+                <h3 className="py-3">Data</h3>
                 <Row className="table-responsive">
                     <Table>
                         <thead>

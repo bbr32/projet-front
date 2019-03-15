@@ -11,7 +11,7 @@ class Calendarr extends Component {
     render() {
         return (
             <div>
-                <h2 className="py-2">Calendar</h2>
+                <h2 className="py-3">Calendar</h2>
                 <Calendar
                     onChange={this.onChange}
                     value={this.state.date}
