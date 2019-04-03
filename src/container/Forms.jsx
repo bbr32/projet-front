@@ -1,26 +1,30 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
-
-let result = "";
+import axios from 'axios';
 
 class Forms extends Component {
     state = {
-        artiste: '',
-        album: '',
-        date: ''
+        name: '',
+        birth: 0,
+        followers: 0,
+        albums: null,
     }
 
     onSubmit = e => {
         e.preventDefault();
-        if (this.state.artiste !== "" && this.state.album !== "" && this.state.date !== "") {
-            result = (
+        if (this.state.name !== "" && this.state.birth !== 0 && this.state.followers !== 0) {
+            /*result = (
                 <div >
-                    <p>Artiste: {this.state.artiste}</p>
+                    <p>Artiste: {this.state.artist}</p>
                     <p>Album: {this.state.album}</p>
                     <p>Date: {this.state.date}</p>
                 </div>
             );
-            this.forceUpdate();
+            this.forceUpdate();*/
+            axios.put('http://localhost:3000/artist', this.state).then(res => {
+                console.log(res);
+            });
+            
         }
 
     }
@@ -28,42 +32,40 @@ class Forms extends Component {
     render() {
         return (
             <div>
-                <h3 className="py-3">Form</h3>
+                <h3 className="py-3">Add an artist to the database</h3>
                 <Form>
                     <FormGroup>
-                        <Label for="formArtist">Artiste</Label>
+                        <Label for="formArtist">Artist</Label>
                         <Input
                             type="text"
                             name="artiste"
                             id="formArtist"
                             placeholder="U2"
-                            value={this.state.artiste}
-                            onChange={e => this.setState({ artiste: e.target.value })} />
+                            value={this.state.name}
+                            onChange={e => this.setState({ name: e.target.value })} />
                     </FormGroup>
                     <FormGroup>
-                        <Label for="exampleEmail">Album</Label>
+                        <Label for="formBirth">Birth Year</Label>
                         <Input
-                            type="text"
-                            name="album"
-                            id="formAlbum"
-                            placeholder="All That You Can't Leave Behind"
-                            value={this.state.album}
-                            onChange={e => this.setState({ album: e.target.value })} />
+                            type="number"
+                            name="birth"
+                            id="formBirth"
+                            placeholder="Birth year"
+                            value={this.state.birth}
+                            onChange={e => this.setState({ birth: e.target.value })} />
                     </FormGroup>
                     <FormGroup>
-                        <Label for="exampleEmail">Email</Label>
+                        <Label for="formFollowers">Followers</Label>
                         <Input
-                            type="date"
-                            name="date"
-                            id="formADate"
-                            placeholder="2000"
-                            value={this.state.date}
-                            onChange={e => this.setState({ date: e.target.value })} />
+                            type="number"
+                            name="followers"
+                            id="formFollowers"
+                            placeholder="2029002"
+                            value={this.state.followers}
+                            onChange={e => this.setState({ followers: e.target.value })} />
                     </FormGroup>
                     <Button onClick={e => this.onSubmit(e)}>Submit</Button>
                 </Form>
-                <br/>
-                {result}
             </div>
         );
     }

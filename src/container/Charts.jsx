@@ -1,74 +1,65 @@
 import React, { Component } from 'react';
 import { Row, Col, Card } from 'reactstrap';
 import {
-    AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, PieChart, Pie, ResponsiveContainer
+    XAxis, YAxis, LineChart, Line, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area, PieChart, Pie
 } from 'recharts';
-
-
-const data = [
-    {
-        name: 'Page A', uv: 4000, pv: 2400, amt: 2400,
-    },
-    {
-        name: 'Page B', uv: 3000, pv: 1398, amt: 2210,
-    },
-    {
-        name: 'Page C', uv: 2000, pv: 9800, amt: 2290,
-    },
-    {
-        name: 'Page D', uv: 2780, pv: 3908, amt: 2000,
-    },
-];
-
-const data01 = [
-    { name: 'Group A', value: 400 }, { name: 'Group B', value: 300 },
-    { name: 'Group C', value: 300 }, { name: 'Group D', value: 200 },
-];
-const data02 = [
-    { name: 'A1', value: 100 },
-    { name: 'A2', value: 300 },
-    { name: 'B1', value: 100 },
-    { name: 'B2', value: 80 },
-    { name: 'B3', value: 40 },
-    { name: 'B4', value: 30 },
-];
+import axios from 'axios';
 
 class Charts extends Component {
+    state = { tracks: []}
+    
+    componentDidMount() {
+        axios.get(`http://localhost:3000/tracks`).then(res => {
+            this.setState({ tracks: res.data })
+        });
+    }
+
     render() {
         return (
             <div>
                 <h3 className="py-3">Charts</h3>
                 <Row>
-                    <Col lg={7} md={12}>
+                    <Col lg={6} md={12}>
                         <Card>
-                            <ResponsiveContainer aspect={1}>
-                                <AreaChart
-                                    data={data}
-                                >
+                            <h5 className="py-2 px-2">Number of likes per tracks</h5>
+                            <ResponsiveContainer aspect={2}>
+                                <LineChart data={this.state.tracks}>
                                     <CartesianGrid strokeDasharray="3 3" />
-                                    <XAxis dataKey="name" />
+                                    <XAxis dataKey="title" />
                                     <YAxis />
                                     <Tooltip />
-                                    <Area type="monotone" dataKey="uv" stackId="1" stroke="#8884d8" fill="#8884d8" />
-                                    <Area type="monotone" dataKey="pv" stackId="1" stroke="#82ca9d" fill="#82ca9d" />
-                                    <Area type="monotone" dataKey="amt" stackId="1" stroke="#ffc658" fill="#ffc658" />
-                                </AreaChart>
-
+                                    <Line type="monotone" dataKey="likes" stroke="#8884d8" activeDot={{ r: 8 }} />
+                                </LineChart>
                             </ResponsiveContainer>
-
                         </Card>
-
                     </Col>
-                    <Col md={6} lg={5}>
+
+                    <Col lg={6} md={12}>
                         <Card>
-                            <ResponsiveContainer aspect={1}>
-                                <PieChart>
-                                    <Pie data={data01} dataKey="value" cx={200} cy={200} outerRadius={60} fill="#8884d8" />
-                                    <Pie data={data02} dataKey="value" cx={200} cy={200} innerRadius={70} outerRadius={90} fill="#82ca9d" label />
-                                </PieChart>
+                            <h5 className="py-2 px-2">Number of listenings per tracks</h5>
+                            <ResponsiveContainer aspect={2}>
+                                <AreaChart data={this.state.tracks}>
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis dataKey="title" />
+                                    <YAxis />
+                                    <Tooltip />
+                                    <Area type="monotone" dataKey="listenings" stroke="#8884d8" fill="#8884d8" />
+                                </AreaChart>
                             </ResponsiveContainer>
                         </Card>
                     </Col>
+                    
+                    <Col lg={{ size: "6", offset:"3"}} md={12} className="py-4">
+                        <Card>
+                            <h5 className="py-2 px-2">Duration of tracks</h5>
+                            <ResponsiveContainer aspect={2}>
+                            <PieChart>
+                                <Pie data={this.state.tracks} dataKey="duration" fill="#8884d8" label />
+                            </PieChart>
+                            </ResponsiveContainer>
+                        </Card>
+                    </Col>
+                    
                 </Row>
             </div>
         );
