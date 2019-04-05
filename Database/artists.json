@@ -1,0 +1,6 @@
+{"_id":{"$oid":"5ca3a621a25a12b1529e5ed7"},"albums":["The Dark Side of the Moon","Atom Heart Mother"],"name":"Pink Floyd","birth":"1963","followers":{"$numberInt":"8397456"}}
+{"_id":{"$oid":"5ca5407b46a5ddc900053bb1"},"albums":null,"name":"U2","birth":"1976","followers":{"$numberInt":"1280371"},"__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5ca5f258308e9b07d77cfcb3"},"albums":null,"name":"John Mayer","birth":"1998","followers":{"$numberInt":"2398231"},"__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5ca5f38b308e9b07d77cfcb5"},"albums":null,"name":"Daft Punk","birth":"1993","followers":{"$numberInt":"3405982"},"__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5ca5f3c8308e9b07d77cfcb7"},"albums":null,"name":"Radiohead","birth":"1992","followers":{"$numberInt":"4792398"},"__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5ca78840308e9b07d77cfccc"},"albums":null,"name":"CHIBRE","birth":"1203","followers":{"$numberInt":"230812"},"__v":{"$numberInt":"0"}}
