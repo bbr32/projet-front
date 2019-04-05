@@ -2,12 +2,18 @@ import React, { Component } from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import axios from 'axios';
 
+let result = "";
+
 class Forms extends Component {
     state = {
         name: '',
         birth: 0,
         followers: 0,
         albums: null,
+    }
+
+    update = () => {
+        this.forceUpdate();
     }
 
     onSubmit = e => {
@@ -22,11 +28,15 @@ class Forms extends Component {
             );
             this.forceUpdate();*/
             axios.put('http://localhost:3000/artist', this.state).then(res => {
-                console.log(res);
+                if(res.status === 200)
+                    result = (<p>Succesfully added {res.data.name} !</p>);
+                else if(res.status === 400)
+                    result = (<p>Cannot add to database, fields are not valid</p>);
+                else if(res.status === 404)
+                    result = (<p>Cannot connect to database</p>);
             });
-            
-        }
-
+            this.setState({ });
+        } else result = (<p>Invalid fields</p>);
     }
 
     render() {
@@ -66,6 +76,7 @@ class Forms extends Component {
                     </FormGroup>
                     <Button onClick={e => this.onSubmit(e)}>Submit</Button>
                 </Form>
+                {result}
             </div>
         );
     }

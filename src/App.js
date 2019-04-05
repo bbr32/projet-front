@@ -52,7 +52,7 @@ class App extends Component {
             </Collapse>
           </Col>
           <Col lg={{ size: 10, offset: 2}} md={{ size: 9, offset: 3}} sm={{ size: 8, offset: 4}}>
-            <Routes/>
+            <Routes />
           </Col>
         </Row>
       </Container>

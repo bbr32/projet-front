@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Table } from 'reactstrap';
+import { Row, Table, Button } from 'reactstrap';
 import axios from 'axios';
 
 class Data extends Component {
@@ -26,6 +26,12 @@ class Data extends Component {
         });
     }
 
+    onSubmit = (e, _id) => {
+        e.preventDefault();
+        axios.delete(`http://localhost:3000/artist/${_id}`);
+        window.location.href = '/';
+    }
+
     render() {
         return (
             <div>
@@ -38,15 +44,19 @@ class Data extends Component {
                                 <th>Albums</th>
                                 <th>Birth</th>
                                 <th>Followers</th>
+                                <th> </th>
                             </tr>
                             {this.state.artists.map(artist => (
                                 <tr>
                                     <td>{artist.name}</td>
                                     <td>{artist.albums ? (artist.albums.map(album => 
                                         (<span>{album}<br/></span>)
-                                        )) : (console.log("chibre"))}</td>
+                                        )) : null}</td>
                                     <td>{artist.birth}</td>
                                     <td>{artist.followers}</td>
+                                    <td>
+                                        <Button className="btn-danger" onClick={e => this.onSubmit(e,artist._id)}>X</Button>
+                                    </td>
                                 </tr>
                             ))}
                         </thead>
